@@ -5,6 +5,7 @@ from Partido import Partido
 team_list = []
 stadium_list = []
 match_list = []
+user_list = []
 
 def registro(db):
 
@@ -82,9 +83,9 @@ def busqueda(option):
         
         if valid('pais', team_list, country_choice) == True:
             for match in match_list:
-                if match.local.pais == country_choice:
+                if match.local.pais == country_choice.capitalize():
                     shown_matches.append(match)
-                if match.visitante.pais == country_choice:
+                if match.visitante.pais == country_choice.capitalize():
                     shown_matches.append(match)
         else:
             print('Entrada invalida.')
@@ -142,6 +143,32 @@ def busqueda(option):
             print('Entrada invalida.')
 
     return shown_matches
+
+def get_user():
+    print('Introduzca los siguientes datos:')
+    nombre = input('Nombre:\n')
+    cedula = input('Cédula:\n')
+    edad = input('edad:\n')
+    match_select = input('Nombre:\n')
+    tipo = input('Tipo de entrada:\n1) General\n2) VIP')
+    if tipo == '1':
+        vip = True
+    elif tipo == '2':
+        vip = False
+    else:
+        print('Entrada invalida.')
+        return None
+    user = Cliente(nombre, cedula, edad, partido, vip)
+    user_list.append(user)
+    return user, user_list
+
+def make_map(rows, columns):
+    map = []
+    for row in range(rows):
+        aux = []
+        for column in range(columns):
+            aux.append(False)
+
             
 def filtro(m_list):
     i = 0

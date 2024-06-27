@@ -15,8 +15,7 @@ def get_data():
         response = requests.get(url)
 
         if response.status_code == 200:
-            content = response.json()
-            data = content
+            data = response.json()
             data_list.append(data)
         
     return data_list
